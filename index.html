@@ -549,7 +549,7 @@
       msg.className = 'waitlist-msg';
 
       try {
-        const res = await fetch('https://api-staging.brightbalance.xyz/api/waitlist', {
+        const res = await fetch('https://brightbalance.xyz/api/waitlist', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email })
