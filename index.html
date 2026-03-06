@@ -367,6 +367,23 @@
     .waitlist-msg.success { color: #6ee7b7; }
     .waitlist-msg.error { color: #fca5a5; }
 
+    .waitlist-tester-opt {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+    .waitlist-tester-opt input[type="checkbox"] {
+      accent-color: var(--brand);
+      width: 1rem;
+      height: 1rem;
+      cursor: pointer;
+    }
+
     /* FOOTER */
     footer {
       padding: 2rem;
@@ -528,6 +545,10 @@
         <input type="email" id="waitlist-email" placeholder="your@email.com" autocomplete="email" required />
         <button type="submit" id="waitlist-btn">Notify Me</button>
       </div>
+      <label class="waitlist-tester-opt">
+        <input type="checkbox" id="waitlist-tester" />
+        I'm interested in being an early tester
+      </label>
       <p class="waitlist-msg" id="waitlist-msg"></p>
     </form>
   </section>
@@ -535,6 +556,7 @@
   <script>
     const form = document.getElementById('waitlist-form');
     const emailInput = document.getElementById('waitlist-email');
+    const testerCheckbox = document.getElementById('waitlist-tester');
     const btn = document.getElementById('waitlist-btn');
     const msg = document.getElementById('waitlist-msg');
 
@@ -552,7 +574,7 @@
         const res = await fetch('https://brightbalance.xyz/api/waitlist', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
+          body: JSON.stringify({ email, interestedInTesting: testerCheckbox.checked })
         });
 
         if (res.ok) {
